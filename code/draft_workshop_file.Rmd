@@ -1,5 +1,5 @@
 ---
-title: "Mississuaga Emitters"
+title: "Mississauga Emitters"
 output: 
   html_document:
     toc: true
@@ -19,7 +19,7 @@ library(scales)
 
 
 # load data
-miss_ghg_data <- read_csv(here("data", "mississuaga_ghg_emitters.csv"))
+miss_ghg_data <- read_csv(here("data", "mississauga_ghg_emitters.csv"))
 facility_emissions <- read_csv(here("data", "facilty_aggregates.csv")) #TODO Change here()
 owner_emissions <- read_csv(here("data", "owner_aggregates.csv"))
 yearly_emissions <- read_csv(here("data", "year_aggregates.csv"))
@@ -81,7 +81,7 @@ The first thing to do whenever doing data analysis is to look at the data:
 View(miss_ghg_data)
 ```
 
-Here, we have data for 13 distinct greenhouse gas emitting sites in the city of Mississuaga, and we have data for these sites between the years 2010 and 2018. Can you tell what each row represents?
+Here, we have data for 13 distinct greenhouse gas emitting sites in the city of Mississauga, and we have data for these sites between the years 2010 and 2018. Can you tell what each row represents?
 
 
 ### Examples
@@ -137,7 +137,7 @@ filter(miss_ghg_data, facility_name %in% c("Mississauga Cement Plant",
   labs(x = "Year", 
        y = "Total Yearly CO2 Equivalent Emissions (Metric Tons)", 
        color = "Facilty Name",
-       title = "Top 3 Mississuaga GHG Emitters Over Time") +
+       title = "Top 3 Mississauga GHG Emitters Over Time") +
   scale_y_continuous(labels = comma) +
   scale_color_manual(values = colorblind_colors) +
   theme_minimal() # makes graph look neater (in my opinion)
@@ -157,7 +157,7 @@ filter(miss_ghg_data, facility_name %in% c("Mississauga Cement Plant",
   labs(x = "Year", 
        y = "Total Yearly CO2 Equivalent Emissions (Metric Tons)", 
        color = "Facilty Name",
-       title = "Top 3 Mississuaga GHG Emitters Over Time") +
+       title = "Top 3 Mississauga GHG Emitters Over Time") +
   scale_y_continuous(labels = comma) +
   scale_color_manual(values = colorblind_colors) +
   theme_minimal() # makes graph look neater (in my opinion)
@@ -253,4 +253,4 @@ What visualizations could be made from these? What kind of plots have you seen b
 ## Further Resources
 
 - [D3](https://d3js.org/) is another web standard for data visualization, and is written in javascript. It is much more complicated, but if you are comfortable with web development, might be a more natural fit. Organizations such as the New York Times and The Pudding do almost all of their final visuals in D3. 
-- [R for Data Science](https://r4ds.had.co.nz/) is a great overview of one framework for doing data work in R, including data preparation which was done behind the scenes. 
+- [R for Data Science](https://r4ds.had.co.nz/) is a great overview of one framework for doing data work in R, including data preparation which was done behind the scenes. - My [GitHub Repo of Data Prep](https://github.com/grahamammal/Mississuaga-Workshop) might be of interest to people who want to see data cleaning in action. Warning! Some of the manipulations done are a little fancy!
