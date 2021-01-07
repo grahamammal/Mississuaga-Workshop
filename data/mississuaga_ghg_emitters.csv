@@ -1,0 +1,68 @@
+year,ontario_ghg_id,facility_owner,facility_name,facility_primary_naics_code,carbon_dioxide_co2_in_co2e_t,methane_ch4_in_co2e_t,nitrous_oxide_n2o_in_co2e_t,hydrofluorocarbons_hfcs_in_co2e_t,co2e_from_all_sources_in_co2e_t,reporting_amount_in_co2e_t,verification_amount_in_co2e_t,accredited_verification_body,facility_address,latitude,longitude,notes
+2010,1024,"CertainTeed Gypsum Canada, Inc.",Toronto Board Plant,327420,25028,10,136,0,25175,25175,NA,NA,2424 Lakeshore Road,43.489584,-79.621055,NA
+2010,1069,Holcim (Canada) inc.,Mississauga Cement Plant,327310,1084571,0,0,0,1084571,1084571,NA,NA,2391 Lakeshore Rd W,43.490189,-79.620399,NA
+2010,1111,Petro-Canada Lubricants Inc.,Mississauga Lubricant Center,324190,364917,623,2039,0,367579,343915,NA,NA,385 Southdown Road,43.501779,-79.617605,NA
+2010,1142,TransAlta Generation Partnership,Mississauga Cogeneration Plant,221112,371977,502,2863,0,375342,375342,NA,NA,"Mississauga, ON L4V 1A6",43.691678,-79.610153,demolished April 2020
+2011,1024,"CertainTeed Gypsum Canada, Inc.",Toronto Board Plant,327420,24952,10.332,135.78,0,25099,25099,25099,Conestoga-Rovers & Associates Limited (CRA),2424 Lakeshore Road,43.489584,-79.621055,NA
+2011,1058,Greater Toronto Airports Authority,Toronto Pearson International Airport,488190,64796.639,27.909,386.57,158.6,65370,65370,65370,NA,"6301 Silver Dart Dr,",43.687394,-79.621843,NA
+2011,1069,Holcim (Canada) inc.,Mississauga Cement Plant,327310,973712,2915.7513,813.595,0,977442,977442,977442,PricewaterhouseCoopers LLP,2391 Lakeshore Rd W,43.490189,-79.620399,NA
+2011,1111,Petro-Canada Lubricants Inc.,Mississauga Lubricant Center,324190,391106.6427,618.4185,2136.117,0,393862,393862,393862,Conestoga-Rovers & Associates Limited (CRA),385 Southdown Road,43.501779,-79.617605,NA
+2011,1115,Poly-Cel Packaging Products,Mississauga Facility,326111,176,0,0,0,176,0,0,NA,"6141 Atlantic Dr,",43.661992,-79.647307,NA
+2011,1142,TransAlta Generation Partnership,Mississauga Cogeneration Plant,221112,337039.8042,454.9566,2593.863,0,340089,340089,340089,Ernst & Young LLP,"Mississauga, ON L4V 1A6",43.691678,-79.610153,demolished April 2020
+2012,1024,"CertainTeed Gypsum Canada, Inc.",Toronto Board Plant,327420,24564,10.164,133.734,0,24708,24708,24708,Conestoga-Rovers & Associates Limited (CRA),2424 Lakeshore Road,43.489584,-79.621055,NA
+2012,1058,Greater Toronto Airports Authority,Toronto Pearson International Airport,488190,63248.243,27.111,373.24,276.9,63926,63926,63926,NA,"6301 Silver Dart Dr,",43.687394,-79.621843,NA
+2012,1069,Holcim (Canada) inc.,Mississauga Cement Plant,327310,1075170.82,2999.8206,804.233,0,1078975,1078975,1078975,PricewaterhouseCoopers LLP,2391 Lakeshore Rd W,43.490189,-79.620399,NA
+2012,1111,Petro-Canada Lubricants Inc.,Mississauga Lubricant Center,324190,388452.4401,744.5823,2018.627,0,391216,391216,391216,Conestoga-Rovers & Associates Limited (CRA),385 Southdown Road,43.501779,-79.617605,NA
+2012,1115,Poly-Cel Packaging Products,Mississauga Facility,326111,0,0,0,0,0,0,0,NA,"6141 Atlantic Dr,",43.661992,-79.647307,NA
+2012,1142,TransAlta Generation Partnership,Mississauga Cogeneration Plant,221112,367220.6693,495.6966,2826.146,0,370543,370543,370543,Ernst & Young LLP,"Mississauga, ON L4V 1A6",43.691678,-79.610153,demolished April 2020
+2013,1024,"CertainTeed Gypsum Canada, Inc.",Toronto Board Plant,327420,23027,9.5277,125.364,0,23162,23162,23162,Conestoga-Rovers & Associates Limited (CRA),2424 Lakeshore Road,43.489584,-79.621055,NA
+2013,1058,Greater Toronto Airports Authority,Toronto Pearson International Airport,488190,48573.262,21.147,302.87,24.7,48922,48922,48922,NA,"6301 Silver Dart Dr,",43.687394,-79.621843,NA
+2013,1069,Holcim (Canada) inc.,Mississauga Cement Plant,327310,985926,2293.5003,864.342,0,989084,989084,989084,PricewaterhouseCoopers LLP,2391 Lakeshore Rd W,43.490189,-79.620399,NA
+2013,1111,Petro-Canada Lubricants Inc.,Mississauga Lubricant Center,324190,370885.3012,703.8633,2015.217,0,373605,373605,373605,Conestoga-Rovers & Associates Limited (CRA),385 Southdown Road,43.501779,-79.617605,NA
+2013,1142,TransAlta Generation Partnership,Mississauga Cogeneration Plant,221112,362603.2531,489.4638,2790.62,0,365884,365884,365884,Ernst & Young LLP,"Mississauga, ON L4V 1A6",43.691678,-79.610153,demolished April 2020
+2014,1024,"CertainTeed Gypsum Canada, Inc.",Toronto Board Plant,327420,25916,10.7226,141.112,0,26068,26068,26068,Conestoga-Rovers & Associates Limited (CRA),2424 Lakeshore Road,43.489584,-79.621055,NA
+2014,1058,Greater Toronto Airports Authority,Toronto Pearson International Airport,488190,59652.5,25.9442,371.0018,1018.3,61068,61068,61068,NA,"6301 Silver Dart Dr,",43.687394,-79.621843,NA
+2014,1069,Holcim (Canada) inc.,Mississauga Cement Plant,327310,982900,1684.977,792.36,0,985378,985378,985378,PricewaterhouseCoopers LLP,2391 Lakeshore Rd W,43.490189,-79.620399,NA
+2014,1111,Petro-Canada Lubricants Inc.,Mississauga Lubricant Center,324190,408414.6917,707.3556,2298.681,0,411421,411421,411421,Conestoga-Rovers & Associates Limited (CRA),385 Southdown Road,43.501779,-79.617605,NA
+2014,1142,TransAlta Generation Partnership,Mississauga Cogeneration Plant,221112,340982.552,460.2801,2624.212,0,344068,344068,344068,Ernst & Young LLP,"Mississauga, ON L4V 1A6",43.691678,-79.610153,demolished April 2020
+2015,1024,"CertainTeed Gypsum Canada, Inc.",Toronto Board Plant,327420,24545.3,10.1556,133.641,0,24690,24690,24690,GHD Limited (formerly CRA),2424 Lakeshore Road,43.489584,-79.621055,NA
+2015,1058,Greater Toronto Airports Authority,Toronto Pearson International Airport,488190,91648.19,39.501,549.94,0,92238,92238,92238,Enviro-Access Inc.,"6301 Silver Dart Dr,",43.687394,-79.621843,NA
+2015,1069,CRH Canada Group Inc.,Mississauga Cement Plant,327310,1053263,6128.3817,892.862,0,1060285,1060285,1060285,PricewaterhouseCoopers LLP,2391 Lakeshore Rd W,43.490189,-79.620399,NA
+2015,1111,Petro-Canada Lubricants Inc.,Mississauga Lubricant Center,324190,370439.4899,728.9352,2060.787,0,373230,373230,373230,GHD Limited (formerly CRA),385 Southdown Road,43.501779,-79.617605,NA
+2015,1142,TransAlta Generation Partnership,Mississauga Cogeneration Plant,221112,368819.047,497.847,2838.36,0,372156,372156,372156,Ernst & Young LLP,"Mississauga, ON L4V 1A6",43.691678,-79.610153,demolished April 2020
+2015,1171,Real Alloy Canada Ltd.,Real Alloy Mississauga,331317,15871.167,6.552,90.83,0,15969,15969,15969,RWDI AIR Inc.,"7496 Torbram Rd,",43.703845,-79.666334,NA
+2015,1183,Tonolli Canada,Tonolli Canada,331490,21975.23,40.2129,54.963,0,22071,22071,22071,NA,"1333 Tonolli Rd,",43.604673,-79.581903,NA
+2015,1227,Booth Linen Services LP,Booth Linen Services LP,812320,11147.73,4.62,65.1,0,11218,11218,11218,GHD Limited (formerly CRA),"6580 Northwest Dr,",43.702233,-79.631324,NA
+2015,1251,"Genpak, Division of Great Pacific Enterprises LP",Genpak Mississauga,326140,12076,5.04,65.1,0,12147,12147,12147,RWDI AIR Inc.,"3185 Pepper Mill Ct,",43.538028,-79.71161,NA
+2016,1024,"CertainTeed Gypsum Canada, Inc.",Toronto Board Plant,327420,23145,9.576,125.984,0,23281,23281,23281,GHD Limited (formerly CRA),2424 Lakeshore Road,43.489584,-79.621055,NA
+2016,1058,Greater Toronto Airports Authority,Toronto Pearson International Airport,488190,66417.06,28.497,390.6,0,66837,66837,66837,Enviro-Access Inc.,"6301 Silver Dart Dr,",43.687394,-79.621843,NA
+2016,1069,CRH Canada Group Inc.,Mississauga Cement Plant,327310,1011849,5195.0073,734.421,0,1017779,1017779,1012697,PricewaterhouseCoopers LLP,2391 Lakeshore Rd W,43.490189,-79.620399,NA
+2016,1111,Petro-Canada Lubricants Inc.,Mississauga Lubricant Center,324190,406651.4011,693.5817,2183.578,0,409529,409529,409529,GHD Limited (formerly CRA),385 Southdown Road,43.501779,-79.617605,NA
+2016,1142,TransAlta Generation Partnership,Mississauga Cogeneration Plant,221112,348870.0402,470.925,2684.91,0,352026,352026,352026,Ernst & Young LLP,"Mississauga, ON L4V 1A6",43.691678,-79.610153,NA
+2016,1171,Real Alloy Canada Ltd.,Real Alloy Mississauga,331317,14988.168,6.1984,82.8413,0,15078,15078,15078,RWDI AIR Inc.,"7496 Torbram Rd,",43.703845,-79.666334,NA
+2016,1183,Tonolli Canada,Tonolli Canada,331490,23613.74,42.6195,59.83,0,23717,23717,23677,NA,"1333 Tonolli Rd,",43.604673,-79.581903,NA
+2016,1227,Booth Linen Services LP,Booth Linen Services LP,812320,11302,4.62,65.1,0,11372,11372,11372,GHD Limited (formerly CRA),"6580 Northwest Dr,",43.702233,-79.631324,NA
+2016,1251,"Genpak, Division of Great Pacific Enterprises LP",Genpak Mississauga,326140,12431,5.04,68.2,0,12505,12505,12505,RWDI AIR Inc.,"3185 Pepper Mill Ct,",43.538028,-79.71161,NA
+2016,1345,Ontario Clean Water Agency,G.E. Booth (Lakeview) Wastewater Treatment Facility,221320,70295.86,1561.317,11535.8245,0,83394,17309,17309,NA,"1300 Lakeshore Rd E,",43.583027,-79.55234,NA
+2016,1346,Super-Pufft Snacks Corporation,Super-Pufft Snacks Corporation,311919,11792.72,4.83,65.1,0,11863,11863,11863,GHD Limited (formerly CRA),"880 Gana Ct,",43.66438,-79.689564,NA
+2017,1024,"CertainTeed Gypsum Canada, Inc.",Toronto Board Plant,327420,25171,10.4139,137.051,0,25319,25319,25319,Internat Energy Solutions Canada Inc.,2424 Lakeshore Road,43.489584,-79.621055,NA
+2017,1058,Greater Toronto Airports Authority,Toronto Pearson International Airport,488190,63396.837,26.418,384.09,0,63808,63808,63808,Enviro-Access Inc.,"6301 Silver Dart Dr,",43.687394,-79.621843,NA
+2017,1069,CRH Canada Group Inc.,Mississauga Cement Plant,327310,1119922.78,2833.929,938.06,0,1123695,1123695,1120969,GHD Limited,2391 Lakeshore Rd W,43.490189,-79.620399,NA
+2017,1111,Petro-Canada Lubricants Inc.,Mississauga Lubricant Center,324190,446272.1794,941.0037,2308.043,0,449522,449522,449522,Ruby Canyon Engineering,385 Southdown Road,43.501779,-79.617605,NA
+2017,1142,TransAlta Generation Partnership,Mississauga Cogeneration Plant,221112,0,0,0,0,0,0,0,GHD,"Mississauga, ON L4V 1A6",43.691678,-79.610153,NA
+2017,1171,Real Alloy Canada Ltd.,Real Alloy Mississauga,331317,14963,6.1824,83.2071,0,15053,15053,15053,GHD Limited,"7496 Torbram Rd,",43.703845,-79.666334,NA
+2017,1183,Revolution VSC Acquisition GP,Tonolli Canada,331490,22606,45.3537,52.018,0,22704,22704,22664,NA,"1333 Tonolli Rd,",43.604673,-79.581903,NA
+2017,1227,Ecotex Healthcare Linen Service LP,Ecotex Healthcare Linen Service LP,812320,10689.73,4.41,62,0,10757,10757,10757,GHD,"6580 Northwest Dr,",43.702233,-79.631324,NA
+2017,1251,"Genpak, Division of Great Pacific Enterprises LP",Genpak Mississauga,326140,13256,5.46,71.3,0,13333,13333,13333,NA,"3185 Pepper Mill Ct,",43.538028,-79.71161,NA
+2017,1345,Ontario Clean Water Agency,G.E. Booth (Lakeview) Wastewater Treatment Facility,221320,65961.09,1467.3515,13411.1757,0,80840,18739,18739,NA,"1300 Lakeshore Rd E,",43.583027,-79.55234,NA
+2017,1346,Super-Pufft Snacks Corporation,Super-Pufft Snacks Corporation,311919,12549.84,5.25,68.2,0,12624,12624,12624,GHD,"880 Gana Ct,",43.66438,-79.689564,NA
+2018,1058,Greater Toronto Airports Authority,Toronto Pearson International Airport,488190,77343.796,32.403,475.54,0,77852,77852,77852,Enviro-access Inc.,"6301 Silver Dart Dr,",43.687394,-79.621843,NA
+2018,1069,CRH Canada Group Inc.,Mississauga Cement Plant,327310,1010346.78,3655.092,2466.67,0,1016469,1016469,1013730,GHD Limited,2391 Lakeshore Rd W,43.490189,-79.620399,NA
+2018,1111,Petro-Canada Lubricants Inc.,Mississauga Lubricant Center,324190,447728.7359,1255.4682,2344.282,0,451329,451329,451329,Ruby Canyon Engineering,385 Southdown Road,43.501779,-79.617605,NA
+2018,1024,"CertainTeed Gypsum Canada, Inc.",Toronto Board Plant,327420,31769.4,13.1439,172.949,0,31956,31956,31956,NA,2424 Lakeshore Road,43.489584,-79.621055,NA
+2018,1171,Real Alloy Canada Ltd.,Real Alloy Mississauga,331317,12373.98,5.0999,67.2235,0,12447,12447,12447,NA,"7496 Torbram Rd,",43.703845,-79.666334,NA
+2018,1183,Revolution VSC Acquisition GP,Tonolli Canada,331490,22007.51,94.1598,51.336,0,22154,22154,22062,NA,"1333 Tonolli Rd,",43.604673,-79.581903,NA
+2018,1227,Ecotex Healthcare Linen Service LP,Ecotex Healthcare Linen Service LP,812320,9213,3.78,52.7,0,9270,9270,9270,NA,"6580 Northwest Dr,",43.702233,-79.631324,NA
+2018,1251,"Genpak, Division of Great Pacific Enterprises LP",Genpak Mississauga,326140,13550,5.67,74.4,0,13631,13631,13631,NA,"3185 Pepper Mill Ct,",43.538028,-79.71161,NA
+2018,1345,Ontario Clean Water Agency,G.E. Booth (Lakeview) Wastewater Treatment Facility,221320,76571.6179,1450.7376,13261.6097,0,91284,19593,19593,NA,"1300 Lakeshore Rd E,",43.583027,-79.55234,NA
+2018,1346,Super-Pufft Snacks Corporation,Super-Pufft Snacks Corporation,311919,13706.9,5.67,74.4,0,13787,13787,13787,NA,"880 Gana Ct,",43.66438,-79.689564,NA

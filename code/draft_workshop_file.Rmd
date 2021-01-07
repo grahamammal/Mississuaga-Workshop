@@ -1,0 +1,256 @@
+---
+title: "Mississuaga Emitters"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+
+## Preparation
+
+```{r setup, include=FALSE, warning = FALSE, message = FALSE}
+# load software packages
+library(tidyverse)
+library(ggplot2)
+library(here)
+library(leaflet)
+library(scales)
+
+
+# load data
+miss_ghg_data <- read_csv(here("data", "mississuaga_ghg_emitters.csv"))
+facility_emissions <- read_csv(here("data", "facilty_aggregates.csv")) #TODO Change here()
+owner_emissions <- read_csv(here("data", "owner_aggregates.csv"))
+yearly_emissions <- read_csv(here("data", "year_aggregates.csv"))
+
+# make plots wider and taller
+knitr::opts_chunk$set(fig.width = 8, # 8 inches wide
+                      fig.height = 6) # by 6 inches tall
+
+```
+
+
+
+## Some R Fundamentals
+
+Before we begin, it will be useful to understand some fundamentals about the framework (`R`) that we'll be using. `R` was a language originally made for statistical analysis by researchers, but now is one of the top two languages for working with data, the other being Python. One thing that `R` excels at is the ability to quickly make quality visualizations. This is done using the R package `ggplot2`, which is contained within the `tidyverse` package that was loaded above with the command `library(tidyverse)`. `R` has a notoriously steep learning curve, so don't worry if you don't understand everything that's happening. Here are a couple things we'll be referencing that come up often. 
+
+#### Vectors
+
+A vector in `R` is just a list of things (usually numbers or words) such as (1, 2, 3) or ("hello", "goodbye", "apple"). To create a vector in `R` with the name `my_vector`, run the following code (press the green play in the top right).
+
+```{r}
+my_vector <- c(1, 2, 3) # this line creates the vector
+my_vector # this line prints it out
+```
+
+Here, `c` is a function that creates vectors, and `<-` saves the thing on the right to the name on the left
+
+#### Data Frames
+
+A data frame in `R` is almost identical to an excel spreadsheet, if the spreadsheet only contained the data. Data frames consist of several columns of vectors in a row. To create a dataframe in `R` with the name `my_dataframe`, run the following code (press the green play in the top right).
+
+```{r}
+my_vector_numbers <- c(1,2,3) # create a numeric vector
+my_vector_words <- c("hello", "goodbye", "apple") # create a character vector (vector of words)
+
+my_dataframe <- data.frame(my_vector_numbers, my_vector_words) # create the dataframe
+my_dataframe # print it out
+```
+
+#### Functions
+
+We'll be using many functions such as `ggplot` or `addCircleMarkers` to create our visualizations. Functions work by taking an input, some number of arguments separated by commas, and return an output. You can tell something is a function when there are parenthesis. For example, we used two functions above, `c` to make a vector, and `data.frame` to make a dataframe. 
+
+One thing that will be done with functions is combining them. There are 2 ways to do this. When using ggplot to make static plots, the `+` symbol combines functions, telling the computer to keep adding on to a plot. The other is called a pipe, and is written `%>%`. This takes whatever is on the left side of the pipe, and makes it the first argument to whatever is on the right side of the pipe. For example, we can use the function `sum` to add up numbers in a vector with the following command. 
+
+```{r}
+my_vector_numbers %>% # use the pipe to run sum(my_vector_numbers)
+  sum()
+```
+
+
+## Static Visualizations
+
+Now we'll begin visualizing our data! 
+
+The first thing to do whenever doing data analysis is to look at the data:
+
+```{r, eval = FALSE}
+View(miss_ghg_data)
+```
+
+Here, we have data for 13 distinct greenhouse gas emitting sites in the city of Mississuaga, and we have data for these sites between the years 2010 and 2018. Can you tell what each row represents?
+
+
+### Examples
+
+Now, we'll actually make some visualizations. We'll do this using the package `ggplot2`, which is an excellent framework for data visualization. It is used by organizations including The Economist and The Guardian for many of the visuals. With a little after the fact editing in illustrator, these can be professional visuals.
+
+A (complicated) cheatsheet of how to use `ggplot2` can be found here: https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf
+
+We'll begin by looking at a basic visualization possible with our data, CO2 equivalent emissions for each facility over time. 
+
+```{r}
+ggplot(miss_ghg_data, 
+       aes(x = year, y = co2e_from_all_sources_in_co2e_t,
+             color = facility_name)) +
+  geom_line()
+```
+
+What do you like about this visual, and what is bad about it? Can you tell how the code might create this visual? 
+
+
+
+ggplot works by layering on levels of visualization. The first layer, ggplot, tells to computer to prepare a plot. The first argument is the data, and the second argument, `aes(...)` contains instructions for how to link the data to the visualization. The second layer, `geom_line` tells the computer to make a line plot. 
+
+
+
+Now, we'll add more complexity to the plot by cleaning up the labels. 
+```{r}
+ggplot(miss_ghg_data ,
+       aes(x = year, y = co2e_from_all_sources_in_co2e_t,
+             color = facility_name)) +
+  geom_line() +
+  labs(x = "Year", 
+       y = "Total Yearly CO2 Emissions (Metric Tons)", 
+       color = "Facilty Name") +
+  scale_y_continuous(labels = comma) +
+  theme_minimal() # makes graph look neater (in my opinion)
+```
+
+
+Now, we'll use a command called `filter` to declutter the graph by only looking at the top 3 emitters. We'll also switch to using a colorblind friendly color palette, which should always be done when encoding information in color. 
+```{r}
+# set colorblind friendly colors as a vector of hexadecimal representions
+colorblind_colors <- c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+
+
+
+filter(miss_ghg_data, facility_name %in% c("Mississauga Cement Plant",
+                                     "Mississauga Cogeneration Plant",
+                                     "Mississauga Lubricant Center")) %>% 
+  ggplot(aes(x = year, y = co2e_from_all_sources_in_co2e_t,
+             color = facility_name)) +
+  geom_line() +
+  labs(x = "Year", 
+       y = "Total Yearly CO2 Equivalent Emissions (Metric Tons)", 
+       color = "Facilty Name",
+       title = "Top 3 Mississuaga GHG Emitters Over Time") +
+  scale_y_continuous(labels = comma) +
+  scale_color_manual(values = colorblind_colors) +
+  theme_minimal() # makes graph look neater (in my opinion)
+
+```
+
+
+Now, we'll emphasize that these data are collected yearly by adding points at each year of collection. 
+```{r}
+filter(miss_ghg_data, facility_name %in% c("Mississauga Cement Plant",
+                                     "Mississauga Cogeneration Plant",
+                                     "Mississauga Lubricant Center")) %>% 
+  ggplot(aes(x = year, y = co2e_from_all_sources_in_co2e_t,
+             color = facility_name)) +
+  geom_line(alpha = 0.5) +
+  geom_point(size = 2) +
+  labs(x = "Year", 
+       y = "Total Yearly CO2 Equivalent Emissions (Metric Tons)", 
+       color = "Facilty Name",
+       title = "Top 3 Mississuaga GHG Emitters Over Time") +
+  scale_y_continuous(labels = comma) +
+  scale_color_manual(values = colorblind_colors) +
+  theme_minimal() # makes graph look neater (in my opinion)
+```
+
+
+
+### Your Turn!
+
+Look at the three aggreagated datasets
+```{r, eval = FALSE}
+View(facility_emissions)
+View(owner_emissions)
+View(yearly_emissions)
+```
+
+What visualizations could be made from these? What kind of plots have you seen before for data such as these? If you come up with an idea, I encourage you to draw out a sketch of what you want the visual to look like. Then, try and build them! We'll work together for this. 
+
+```{r}
+# CODE GOES HERE
+```
+
+
+
+## Interactive Maps
+
+Now lets try mapping things! We'll be using the `R` package `rleaflet` to interface with the javascript library `leaflet`, which is the web standard for interactive maps. Pretty much anytime you see an interactive map on the web, it is powered by leaflet. 
+
+The reference manual for `rleaflet` can be found here: https://rstudio.github.io/leaflet/
+
+### Examples
+
+As opposed to `ggplot`, `leaflet` uses pipes (`%>%`) to add layers. We'll be plotting average yearly facility CO2 equivalent emissions. 
+
+```{r}
+facility_emissions %>%
+  leaflet() %>% 
+  addTiles() %>% 
+  addCircleMarkers()
+```
+
+Can you tell how these functions could combine to make a map?
+
+
+Now we'll add a layer of complexity, and change the size of points based on their emissions.
+```{r}
+normalize <- function(vector) { # makes values of a vector between -1 and 1 to ease sizing
+  vector / max(abs(vector))
+} 
+
+facility_emissions %>%
+  leaflet() %>% 
+  addTiles() %>% 
+  addCircleMarkers(radius = ~100 * normalize(average_yearly_carbon_dioxide_co2_in_co2e_t),
+                   stroke = FALSE, fillOpacity = 0.5)
+
+```
+
+
+Now, another layer of complexity adds coloring by emissions, and clean up the map by switching to a more minimal tile background. 
+```{r}
+average_co2e_colors <- colorNumeric( # prepares a color palette for our color scale
+  palette = "viridis",
+  domain = facility_emissions$average_yearly_co2e_from_all_sources_in_co2e_t)
+
+facility_emissions %>%
+  leaflet() %>% 
+  addProviderTiles(providers$CartoDB.Positron) %>% # CartoDB is a provider of basemaps
+  addCircleMarkers(radius = ~ 100 * normalize(average_yearly_carbon_dioxide_co2_in_co2e_t),
+                   color = ~ average_co2e_colors(average_yearly_carbon_dioxide_co2_in_co2e_t),
+                   stroke = FALSE, fillOpacity = 0.5) %>% 
+  addLegend("bottomright", 
+            pal = average_co2e_colors, 
+            values = ~average_yearly_carbon_dioxide_co2_in_co2e_t,
+    title = "Average Yearly CO2 Equivalent Emissions",
+    opacity = 0.5
+  )
+```
+
+
+
+
+### Your Turn!
+
+What visualizations could be made from these? What kind of plots have you seen before for data such as these? If you come up with an idea, I encourage you to draw out a sketch of what you want the visual to look like. Then, try and build them! We'll work together for this. 
+
+```{r}
+# CODE GOES HERE
+```
+
+## Recap
+
+## Further Resources
+
+- [D3](https://d3js.org/) is another web standard for data visualization, and is written in javascript. It is much more complicated, but if you are comfortable with web development, might be a more natural fit. Organizations such as the New York Times and The Pudding do almost all of their final visuals in D3. 
+- [R for Data Science](https://r4ds.had.co.nz/) is a great overview of one framework for doing data work in R, including data preparation which was done behind the scenes. 

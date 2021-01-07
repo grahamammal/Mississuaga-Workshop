@@ -13,7 +13,7 @@ library(leaflet)
 library(dplyr)
 library(stringr)
 library(scales)
-
+library(readr)
 theme_set(theme_minimal())
 
 colorblind_colors <- c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
@@ -202,6 +202,17 @@ facility_level_data %>%
     title = "Average Yearly CO2 Equivalent Emissions",
     opacity = 0.5
   )
+```
+
+
+
+Write clean data to disk
+```{r, eval=FALSE}
+write_csv(facility_level_data, here("data", "facilty_aggregates.csv"))
+write_csv(owner_level_data, here("data", "owner_aggregates.csv"))
+write_csv(year_level_data, here("data", "year_aggregates.csv"))
+
+write_csv(miss_data_clean, here("data", "mississuaga_ghg_emmiters.csv"))
 ```
 
 
