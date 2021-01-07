@@ -1,0 +1,207 @@
+---
+title: "Initial Exploration"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(ggplot2)
+library(glue)
+library(here)
+library(leaflet)
+library(dplyr)
+library(stringr)
+library(scales)
+
+theme_set(theme_minimal())
+
+colorblind_colors <- c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+
+```
+
+
+```{r}
+miss_data <- readr::read_csv(here("data", "Mississauga_GHG_Data_2010-2018_Complete.csv")) %>% 
+  select(-X24)
+```
+
+
+```{r}
+miss_data_clean <- miss_data %>% 
+  rename_with(~tolower(str_replace_all(str_replace_all(.x, " ", "_"), "[()-]", ""))) %>% 
+  select(-perfluorocarbons_pfcs_in_co2e_t,
+         -nitrogen_trifluoride_nf3_in_co2e_t,
+         -sulphur_hexafluoride_sf6_in_co2e_t, 
+         -google_maps_link,
+         -facility_city)
+```
+
+
+```{r}
+facility_rename_table <- tribble(
+  ~facility_name, ~facility_rename,
+  "BOOTH CENTENNIAL HEALTHCARE LINEN SERVICES", "Booth Linen Services LP",
+  "TONOLLI CANADA LIMITED", "Tonolli Canada",
+  "TONOLLI CANADA", "Tonolli Canada",
+  "Mississauga Wallboard Plant", "Toronto Board Plant",
+  "Mississauga Plant", "Mississauga Cement Plant",
+  "GENPAK MISSISSAUGA", "Genpak Mississauga",
+  "Mississauga Lubricants Centre", "Mississauga Lubricant Center",
+  "SUPER-PUFFT SNACKS CORPORATION", "Super-Pufft Snacks Corporation"
+)
+
+miss_data_clean <- miss_data %>% 
+  rename_with(~tolower(str_replace_all(str_replace_all(.x, " ", "_"), "[()-]", ""))) %>% 
+  select(-perfluorocarbons_pfcs_in_co2e_t,
+         -nitrogen_trifluoride_nf3_in_co2e_t,
+         -sulphur_hexafluoride_sf6_in_co2e_t, 
+         -google_maps_link,
+         -facility_city) %>% 
+  left_join(facility_rename_table, by = "facility_name") %>% 
+  mutate(facility_rename = ifelse(is.na(facility_rename), facility_name, facility_rename)) %>% 
+  select(-facility_name) %>% 
+  rename(facility_name = facility_rename) %>% 
+  select(year, ontario_ghg_id, facility_owner, facility_name, everything()) %>% 
+  mutate(facility_owner = case_when(
+    facility_owner == "Booth Centennial Healthcare Linen Services" ~ "Booth Linen Services LP",
+    facility_owner == "CERTAINTEED GYPSUM CANADA INC." ~ "CertainTeed Gypsum Canada, Inc.",
+    facility_owner == "Certainteed Gypsum Canada" ~ "CertainTeed Gypsum Canada, Inc.",
+    facility_owner == "Petro-Canada" ~ "Petro-Canada Lubricants Inc.",
+    facility_owner == "SUPER-PUFFT SNACKS CORPORATION" ~ "Super-Pufft Snacks Corporation",
+    facility_owner == "TransAlta Cogeneration LP" ~ "TransAlta Generation Partnership",
+    TRUE ~ facility_owner
+  )) %>% 
+  mutate(carbon_dioxide_co2_in_co2e_t = carbon_dioxide_co2_from_nonbiomass_in_co2e_t + 
+          carbon_dioxide_co2_from_biomass_in_co2e_t) %>% 
+  relocate(carbon_dioxide_co2_in_co2e_t, .after = carbon_dioxide_co2_from_biomass_in_co2e_t) %>% 
+  select(-carbon_dioxide_co2_from_biomass_in_co2e_t,
+         -carbon_dioxide_co2_from_nonbiomass_in_co2e_t) %>% 
+  rename(co2e_from_all_sources_in_co2e_t = total_co2e_from_all_sources_in_co2e_t) %>% 
+  mutate(longitude = as.numeric(str_trim(longitude)))
+```
+
+
+
+```{r}
+miss_data_clean %>% 
+  ggplot(aes(x = year, y = co2e_from_all_sources_in_co2e_t,
+             color = facility_name)) +
+  geom_line()
+
+
+miss_data_clean %>% 
+  ggplot(aes(x = year, y = co2e_from_all_sources_in_co2e_t,
+             color = facility_name)) +
+  geom_line() +
+  labs(x = "Year", 
+       y = "Total Yearly CO2 Emissions (Metric Tons)", 
+       color = "Facilty Name") +
+  scale_y_continuous(labels = comma)
+
+
+filter(miss_data_clean, facility_name %in% c("Mississauga Cement Plant",
+                                     "Mississauga Cogeneration Plant",
+                                     "Mississauga Lubricant Center")) %>% 
+  ggplot(aes(x = year, y = co2e_from_all_sources_in_co2e_t,
+             color = facility_name)) +
+  geom_line() +
+  labs(x = "Year", 
+       y = "Total Yearly CO2 Equivalent Emissions (Metric Tons)", 
+       color = "Facilty Name") +
+  scale_y_continuous(labels = comma) +
+  scale_color_manual(values = colorblind_colors)
+```
+
+Now have them try to do the same for methane or another similar variable (numbers). They might also look at coloring by different corporations to see how it is different. 
+
+
+Prepare summarized dataset
+
+```{r}
+miss_data_clean
+```
+
+```{r}
+facility_level_data <- miss_data_clean %>% 
+  group_by(facility_primary_naics_code) %>% 
+  summarise(across(.cols = c(co2e_from_all_sources_in_co2e_t,
+                             carbon_dioxide_co2_in_co2e_t,
+                             methane_ch4_in_co2e_t,
+                             nitrous_oxide_n2o_in_co2e_t,
+                             hydrofluorocarbons_hfcs_in_co2e_t),
+                   .fns = list(total = ~sum(.x, na.rm = TRUE), 
+                               average_yearly = ~mean(.x, na.rm = TRUE)),
+                   .names = "{.fn}_{.col}"),
+            latitude = first(latitude),
+            longitude = first(longitude))
+  
+
+owner_level_data <- miss_data_clean %>% 
+  group_by(facility_owner) %>% 
+  summarise(across(.cols = c(co2e_from_all_sources_in_co2e_t,
+                             carbon_dioxide_co2_in_co2e_t,
+                             methane_ch4_in_co2e_t,
+                             nitrous_oxide_n2o_in_co2e_t,
+                             hydrofluorocarbons_hfcs_in_co2e_t),
+                   .fns = list(total = ~sum(.x, na.rm = TRUE), 
+                               average_yearly = ~mean(.x, na.rm = TRUE)),
+                   .names = "{.fn}_{.col}"),
+            latitude = first(latitude),
+            longitude = first(longitude),
+            facility_name = first(facility_name))
+  
+
+year_level_data <- miss_data_clean %>% 
+  group_by(year) %>% 
+  summarise(across(.cols = c(co2e_from_all_sources_in_co2e_t,
+                             carbon_dioxide_co2_in_co2e_t,
+                             methane_ch4_in_co2e_t,
+                             nitrous_oxide_n2o_in_co2e_t,
+                             hydrofluorocarbons_hfcs_in_co2e_t),
+                   .fns = list(total = ~sum(.x, na.rm = TRUE), 
+                               average_yearly = ~mean(.x, na.rm = TRUE)),
+                   .names = "{.fn}_{.col}"))
+  
+
+
+```
+
+Now lets look at mapping things:
+
+```{r}
+normalize <- function(vector) {
+  vector / max(abs(vector))
+} 
+
+average_co2e_colors <- colorNumeric(
+  palette = "viridis",
+  domain = facility_level_data$average_yearly_co2e_from_all_sources_in_co2e_t)
+
+facility_level_data %>%
+  leaflet() %>% 
+  addTiles() %>% 
+  addCircleMarkers()
+
+
+facility_level_data %>%
+  leaflet() %>% 
+  addTiles() %>% 
+  addCircleMarkers(radius = ~100 * normalize(average_yearly_carbon_dioxide_co2_in_co2e_t),
+                   stroke = FALSE, fillOpacity = 0.5)
+
+facility_level_data %>%
+  leaflet() %>% 
+  addTiles() %>% 
+  addCircleMarkers(radius = ~ 100 * normalize(average_yearly_carbon_dioxide_co2_in_co2e_t),
+                   color = ~ average_co2e_colors(average_yearly_carbon_dioxide_co2_in_co2e_t),
+                   stroke = FALSE, fillOpacity = 0.5) %>% 
+  addLegend("bottomright", 
+            pal = average_co2e_colors, 
+            values = ~average_yearly_carbon_dioxide_co2_in_co2e_t,
+    title = "Average Yearly CO2 Equivalent Emissions",
+    opacity = 0.5
+  )
+```
+
+
