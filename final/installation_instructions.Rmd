@@ -1,0 +1,53 @@
+---
+title: "Reading Open Data Installation Tutorial"
+output: html_document
+---
+
+
+For the reading open data workshop, you will need to install several pieces of software onto your computer. If you run into issues installing, you might find [this website](https://r4ds.had.co.nz/introduction.html#prerequisites)  useful. 
+
+## R
+
+First, you'll need to install the R software, which is the language that we'll be using. Go to [this website](https://cloud.r-project.org/) and download the file corresponding to your operating system. You should then be able to open the `.exe` file if you are on windows, or the `.pkg` file if you are on a Mac. 
+
+## RStudio
+
+Next, you'll need RStudio, which is an interface to the R language to make coding easier. It can be downloaded from [here](https://rstudio.com/products/rstudio/download/#download). Again, opening the file should begin the installation process. 
+
+After installing RStudio, try opening the `.Rmd` file associated with this `.html` file in RStudio.  
+
+## R Add-Ons
+
+After installing both R and RStudio, you'll need to install a couple of R Add-Ons/Plugins/Packages, which provide tools written by developers to ease programming. We'll be using 3, called `tidyverse`, `leaflet` and `scales`. 
+
+This can be done in a couple of ways. If you have opened the `.Rmd` file in RStudio associated with this `.html` file, you can run the following code by pressing the green arrow in the top right of the gray section containing the code:
+
+```{r, eval = FALSE}
+install.packages("tidyverse")
+install.packages("leaflet")
+install.packages("scales")
+```
+
+To test these installs worked, try running the following code:
+
+```{r, eval = FALSE}
+library(tidyverse)
+library(leaflet)
+library(scales)
+
+x <- c(1, 2, 3)
+y <- c(2, 3, 1)
+
+test_data <- data.frame(x = x, y = y)
+
+
+ggplot(test_data,
+       aes(x = x, y = y)) +
+  geom_point()
+```
+
+It should create a simple point plot. 
+
+Alternatively, if you are viewing the `.html` file, you can copy the code in the first section (the `install.packages` lines), and paste it either into your console in RStudio which is usually at the bottom left of the screen. You should then be able to copy the second section of code into your console, and a small plot should appear. 
+
+You may find it useful to try to figure out how the above code creates the plot, or look through the document we'll be using for the workshop. 

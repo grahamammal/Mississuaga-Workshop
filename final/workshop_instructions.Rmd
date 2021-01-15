@@ -17,10 +17,10 @@ library(leaflet) # mapping
 library(scales) # remove scientific notation on plots
 
 # load data
-miss_ghg_data <- read_csv(here("data", "mississauga_ghg_emitters.csv"))
-facility_emissions <- read_csv(here("data", "facilty_aggregates.csv")) #TODO Change here()
-owner_emissions <- read_csv(here("data", "owner_aggregates.csv"))
-yearly_emissions <- read_csv(here("data", "year_aggregates.csv"))
+miss_ghg_data <- read_csv("mississauga_ghg_emitters.csv")
+facility_emissions <- read_csv("facilty_aggregates.csv")
+owner_emissions <- read_csv("owner_aggregates.csv")
+yearly_emissions <- read_csv("year_aggregates.csv")
 
 # make plots wider and taller
 knitr::opts_chunk$set(fig.width = 8, # 8 inches wide
@@ -275,5 +275,6 @@ What visualizations could be made from these? What kind of plots have you seen b
 ## Further Resources
 
 - [D3](https://d3js.org/) is another web standard for data visualization, and is written in javascript. It is much more complicated, but if you are comfortable with web development, might be a more natural fit. Organizations such as the New York Times and The Pudding do almost all of their final visuals in D3.     
-- [R for Data Science](https://r4ds.had.co.nz/) is a great overview of one framework for doing data work in R, including data preparation which was done behind the scenes. - My [GitHub Repo of Data Prep](https://github.com/grahamammal/Mississuaga-Workshop) might be of interest to people who want to see data cleaning in action. Warning! Some of the manipulations done are a little fancy!
+- [R for Data Science](https://r4ds.had.co.nz/) is a great overview of one framework for doing data work in R, including data preparation which was done behind the scenes.     
+- My [GitHub Repo of Data Prep](https://github.com/grahamammal/Mississuaga-Workshop) might be of interest to people who want to see data cleaning in action. Warning! Some of the manipulations done are a little fancy!
 - [leaflet](https://leafletjs.com/): here is a link to the javascript version of leaflet for those more familiar with web development. 
